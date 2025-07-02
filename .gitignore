@@ -1,0 +1,79 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyo
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+
+# Secret keys, local config
+.env
+.env.*
+
+# VS Code & IDEs
+.vscode/
+.idea/
+
+# macOS / Linux / Windows system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Docker
+*.pid
+*.seed
+docker-compose.override.yml
+__docker_build__/
+*.tar
+*.bak
+*.swp
+
+# Static files
+staticfiles/
+static/
+
+# Coverage and testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.cache
+.pytest_cache/
+
+# Migrations (optional)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.log
+# Uncomment next line to ignore all migrations
+# */migrations/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Sentry CLI config
+.sentryclirc
+
+# Swagger schema cache
+schema.yml
