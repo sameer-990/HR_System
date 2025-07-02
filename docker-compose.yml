@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: hr_system_db
+      POSTGRES_USER: hr_user
+      POSTGRES_PASSWORD: hr_pass
+
+  web:
+    build: .
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python manage.py collectstatic --noinput &&
+        gunicorn HR_System.wsgi:application --bind 0.0.0.0:8000
+      "
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - ./media:/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DJANGO_SETTINGS_MODULE: HR_System.settings
+      DB_NAME: hr_system_db
+      DB_USER: hr_user
+      DB_PASSWORD: hr_pass
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

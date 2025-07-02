@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h4 class="mb-0">Candidate Registration</h4>
+        </div>
+
+        {% if message %}
+            {% if error %}
+                <p style="color: red">{{ message }}</p>
+            {% else %}
+                <p style="color: green">{{ message }}</p>
+            {% endif %}
+
+        {% endif %}
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3 form-control">
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">
+                                {{ field.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
